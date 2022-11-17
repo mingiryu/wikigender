@@ -79,7 +79,7 @@ def results(path):
 
     df["query"] = df["wikidata_id"].progress_apply(get_query)
 
-    n_cores = cpu_count() // 2
+    n_cores = cpu_count() // 4
     logger.info(f"Collecting Wikidata with {n_cores} processes")
     with Pool(n_cores) as pool:
         results = pool.imap(get_results, df["query"])
@@ -90,7 +90,12 @@ def results(path):
     df = df.dropna()
     df = df.reset_index(drop=True)
 
-    df.to_csv(f"{path}".replace(".csv", "results.csv"), index=False)
+    df.to_csv(f"{path}".replace(".csv", "-results.csv"), index=False)
+
+
+@app.command()
+def build(path):
+    pass
 
 
 def get_query(wikidata_id):
