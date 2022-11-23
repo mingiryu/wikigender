@@ -17,12 +17,12 @@ tqdm.pandas()
 app = typer.Typer()
 
 DATA_DIR = Path(__file__).parent / "data"
-BUILD_DIR = Path(__file__).parent / "build"
+RELEASE_DIR = Path(__file__).parent / "release"
 
 MALE_PATH = DATA_DIR / "male.csv"
 FEMALE_PATH = DATA_DIR / "female.csv"
 
-DATASET_PATH = BUILD_DIR / "dataset.csv"
+DATASET_PATH = RELEASE_DIR / "dataset.csv"
 
 
 class Wikidata(pa.SchemaModel):
